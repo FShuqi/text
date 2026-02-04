@@ -1,5 +1,7 @@
-// 修复版 app.js
-
+const saved = localStorage.getItem("todos");
+if (saved) {
+  todos = JSON.parse(saved);
+}
 const input = document.getElementById("todoInput");
 const addBtn = document.getElementById("addBtn");
 const list = document.getElementById("todoList");
