@@ -1,3 +1,8 @@
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    addBtn.click();
+  }
+});
 const input = document.getElementById("todoInput");
 const addBtn = document.getElementById("addBtn");
 const list = document.getElementById("todoList");
