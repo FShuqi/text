@@ -1,14 +1,19 @@
+// 修复版 app.js
+
+const input = document.getElementById("todoInput");
+const addBtn = document.getElementById("addBtn");
+const list = document.getElementById("todoList");
+const countEl = document.getElementById("count");
+
+// 用数组存 Todo（假数据）
+let todos = [];
+
+// 回车触发添加
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     addBtn.click();
   }
 });
-const input = document.getElementById("todoInput");
-const addBtn = document.getElementById("addBtn");
-const list = document.getElementById("todoList");
-
-// 用数组存 Todo（假数据）
-let todos = [];
 
 // 点击“添加”
 addBtn.addEventListener("click", () => {
@@ -25,9 +30,15 @@ addBtn.addEventListener("click", () => {
   render();
 });
 
-// 渲染列表
+// 渲染列表并更新计数
 function render() {
   list.innerHTML = "";
+
+  // 统一在 render 中更新待办数量
+  const activeCount = todos.filter(t => !t.completed).length;
+  if (countEl) {
+    countEl.textContent = `待办：${activeCount} 个`;
+  }
 
   todos.forEach(todo => {
     const li = document.createElement("li");
@@ -41,9 +52,6 @@ function render() {
     span.addEventListener("click", () => {
       todo.completed = !todo.completed;
       render();
-      const count = document.getElementById("count");
-const activeCount = todos.filter(t => !t.completed).length;
-count.textContent = `待办：${activeCount} 个`;
     });
 
     const delBtn = document.createElement("button");
@@ -58,3 +66,6 @@ count.textContent = `待办：${activeCount} 个`;
     list.appendChild(li);
   });
 }
+
+// 初始渲染
+render();
