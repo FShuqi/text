@@ -67,6 +67,7 @@ function render() {
     li.appendChild(delBtn);
     list.appendChild(li);
   });
+localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 // 初始渲染
