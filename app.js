@@ -41,6 +41,9 @@ function render() {
     span.addEventListener("click", () => {
       todo.completed = !todo.completed;
       render();
+      const count = document.getElementById("count");
+const activeCount = todos.filter(t => !t.completed).length;
+count.textContent = `待办：${activeCount} 个`;
     });
 
     const delBtn = document.createElement("button");
